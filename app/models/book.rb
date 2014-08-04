@@ -12,4 +12,10 @@ class Book
   field :reviews, type: Hash
 
   field :currency, localize: true
+
+  has_one :book_detail, primary_key: :isbn
+  has_one :book_detail, foreign_key: :book_detail_info, validate: false
+  has_many :publications, class_name: 'Book'
+  has_and_belongs_to_many :categories
+  belongs_to :author, counter_cache: :books_count, index: true
 end
