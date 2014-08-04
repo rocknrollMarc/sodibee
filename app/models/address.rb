@@ -8,4 +8,7 @@ class Address
   field :country, type: String
 
   embedded_in :author
+  accepts_nested_attributes_for :address, rejected_if: ->(attrs) {
+    attrs[:country].blank? }
+
 end

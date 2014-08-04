@@ -1,0 +1,14 @@
+<% form_for(@author) do |f| %>
+  <div class="field">
+    <%= f.label :name  %>
+    <%= f.text_field :name  %>
+  </div>
+
+  <h3>Address</h3>
+  <%= f.fields_for :address do |a|  %>
+    <div class="field">
+      <%= a.label :street  %>
+      <%= a.text_field :street  %>
+  </div>
+<% end %>
+<% end %>
