@@ -8,4 +8,12 @@ class AuthorsController < ApplicationController
       render :new
     end
   end
+
+  private
+  def author_params
+    params.require(:author).permit(:name, :last_name, 
+                                  :address_attributes => [:street, :city, :state,
+                                                          :zipcode, :country],
+                                  :books_attributes => [:title, :price])
+  end
 end
