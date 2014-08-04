@@ -11,4 +11,7 @@ class Address
   accepts_nested_attributes_for :address, rejected_if: ->(attrs) {
     attrs[:country].blank? }
 
+  embedded_in :author, inverse_of: :permanent_address
+  embedded_in :author, inverse_of: :current_address
+
 end

@@ -18,4 +18,8 @@ class Book
   has_many :publications, class_name: 'Book'
   has_and_belongs_to_many :categories
   belongs_to :author, counter_cache: :books_count, index: true
+
+  embeds_many :reviews, cascade_callbacks: true
+  embeds_many :child_authors, class_name: "Author", cyclic: true
+  embedded_in :parent_author, class_name: "Author", cyclic: true
 end

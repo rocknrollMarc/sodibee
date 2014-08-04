@@ -17,8 +17,19 @@ class Author
 
   has_many :books, order: {title: 1 }
   embeds_one :address
+  embeds_one :permanent_address, class_name: "Address"
+  embeds_one :current_address, class_name: "Address"
+
+  has_and_belongs_to_many :followers,
+                          class_name: "Author",
+                          inverse_of: :following
+
+  has_and_belongs_to_many :following,
+    class_name: "Author",
+    inverse_of: :followers
 
   accepts_nested_attributes_for :books, :address
+  recursively_embeds_many 
 
   validates :name, presence: true
 end
